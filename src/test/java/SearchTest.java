@@ -1,6 +1,5 @@
 import config.WebDriverConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
 import pageobjects.GoogleAnswerPage;
 import pageobjects.GoogleSearchPage;
@@ -9,16 +8,15 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.text.IsEmptyString.emptyOrNullString;
 
+@Slf4j
 public class SearchTest {
-
-    private static final Logger logger = LoggerFactory.getLogger(SearchTest.class);
 
     @Test
     public void searchQueryReturnsString() {
 
         String searchQuery = "What is the distance to the sun?";
 
-        logger.info("Search query: {}", searchQuery);
+        log.info("Search query: {}", searchQuery);
 
         WebDriverConfig webDriverConfig = new WebDriverConfig();
 
@@ -32,7 +30,7 @@ public class SearchTest {
 
         org.hamcrest.MatcherAssert.assertThat(searchResult, is(not(emptyOrNullString())));
 
-        logger.info("Search result: {}", searchResult);
+        log.info("Search result: {}", searchResult);
 
     }
 }
