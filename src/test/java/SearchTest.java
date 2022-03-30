@@ -3,6 +3,10 @@ import org.testng.annotations.Test;
 import pageobjects.GoogleAnswerPage;
 import pageobjects.GoogleSearchPage;
 
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.text.IsEmptyString.emptyOrNullString;
+
 public class SearchTest {
 
     @Test
@@ -23,6 +27,8 @@ public class SearchTest {
         googleAnswerPage.closePage();
 
         System.out.println("Search result: " + searchResult);
+
+        org.hamcrest.MatcherAssert.assertThat(searchResult, is(not(emptyOrNullString())));
 
     }
 }
