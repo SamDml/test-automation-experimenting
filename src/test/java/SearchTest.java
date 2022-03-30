@@ -1,4 +1,5 @@
 import config.WebDriverConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
 import pageobjects.GoogleAnswerPage;
 import pageobjects.GoogleSearchPage;
@@ -7,6 +8,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.text.IsEmptyString.emptyOrNullString;
 
+@Slf4j
 public class SearchTest {
 
     @Test
@@ -14,7 +16,7 @@ public class SearchTest {
 
         String searchQuery = "What is the distance to the sun?";
 
-        System.out.println("Search query: " + searchQuery);
+        log.info("Search query: {}", searchQuery);
 
         WebDriverConfig webDriverConfig = new WebDriverConfig();
 
@@ -26,9 +28,9 @@ public class SearchTest {
         String searchResult = googleAnswerPage.retrieveSearchResult();
         googleAnswerPage.closePage();
 
-        System.out.println("Search result: " + searchResult);
-
         org.hamcrest.MatcherAssert.assertThat(searchResult, is(not(emptyOrNullString())));
+
+        log.info("Search result: {}", searchResult);
 
     }
 }
